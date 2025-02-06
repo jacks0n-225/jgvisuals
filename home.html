@@ -20,6 +20,7 @@
       </ul>
       <!-- Desktop Imprint-Link -->
       <a href="#" class="imprint-link desktop-imprint-link" id="desktop-imprint-link">Imprint</a>
+      
       <!-- Desktop Sidebar-Schließ-Button (wird bei normalen erweiterten Inhalten genutzt) -->
       <button id="sidebar-close-btn" class="sidebar-close-btn">
         <span class="x">&#10005;</span>
@@ -46,16 +47,16 @@
           © Copyright Jakob Giggenbach Visuals 2024.
         </p>
       </div>
-     <div class="sidebar-expanded-content about-content" id="sidebar-expanded-about">
-  <!-- Container für das Bild -->
-  <div class="about-image-container">
-    <img src="img/img212.jpg" alt="About Image" class="about-image" />
-  </div>
+      <div class="sidebar-expanded-content about-content" id="sidebar-expanded-about">
+        <!-- Container für das Bild -->
+        <div class="about-image-container">
+          <img src="img/img212.jpg" alt="About Image" class="about-image" />
+        </div>
   
-  <p>
-    I'm Jakob Giggenbach, a dedicated photography student with a focus on Foto-Design at the University of Applied Sciences in Munich. My creative heart beats for the intersection of Fashion, Product Photography, and Film. I seek to weave narratives into every shot, blending the elegance of fashion with the precision of product aesthetics. My films extend these stories into dynamic sequences, filled with emotion and expression. The addition of CGI allows me to construct imaginative realities that enhance and elevate my visual storytelling. For opportunities to collaborate or to see more of my work, please reach out.
-  </p>
-</div>
+        <p>
+          I'm Jakob Giggenbach, a dedicated photography student with a focus on Foto-Design at the University of Applied Sciences in Munich. My creative heart beats for the intersection of Fashion, Product Photography, and Film. I seek to weave narratives into every shot, blending the elegance of fashion with the precision of product aesthetics. My films extend these stories into dynamic sequences, filled with emotion and expression. The addition of CGI allows me to construct imaginative realities that enhance and elevate my visual storytelling. For opportunities to collaborate or to see more of my work, please reach out.
+        </p>
+      </div>
       <div class="sidebar-expanded-content contact-content" id="sidebar-expanded-contact">
         <p>
           <strong>Get in Touch</strong><br><br>
@@ -118,6 +119,11 @@
         <div id="hello-close-btn" class="hello-close-btn">view portfolio</div>
       </div>
     </nav>
+
+    <!-- Neuer Desktop "view work"-Button (außerhalb der Sidebar, fest rechts positioniert) -->
+    <button id="desktop-view-work-btn" class="view-work-btn">
+      view work <span class="arrow">➜</span>
+    </button>
 
     <!-- MOBILE HEADER -->
     <header class="mobile-header" id="mobile-header">
@@ -263,30 +269,30 @@
     <div class="menu-overlay" id="menu">
       <a href="#" class="close_button" id="menu-close">&#10005;</a>
       <div class="projects-grid">
-          <a href="fashion_1.html" class="project-item">
-            <img src="img/_DSF4081-Verbessert-RR-Bearbeitet.jpg" alt="Titel 1" />
-            <div class="project-title">Fashion</div>
-          </a>
-          <a href="fashion_2.html" class="project-item">
-            <img src="img/DSCF9219-Verbessert-RR.jpg" alt="Titel 2" />
-            <div class="project-title">Fashion</div>
-          </a>
-          <a href="fashion_3.html" class="project-item">
-            <img src="img/Modefotografie_Giggenbach-26.jpg" alt="Titel 3" />
-            <div class="project-title">Fashion</div>
-          </a>
-          <a href="product.html" class="project-item">
-            <img src="img/Zeichenfla%CC%88che%202.jpg" alt="Titel 4" />
-            <div class="project-title">Product</div>
-          </a>
-          <a href="fine-art.html" class="project-item">
-            <img src="img/Flora-Verbessert.jpg" alt="Titel 5" />
-            <div class="project-title">Fine Art</div>
-          </a>
-          <a href="schoeffel.html" class="project-item">
-            <img src="img/DSCF9133.jpg" alt="Titel 6" />
-            <div class="project-title">Schöffel</div>
-          </a>
+        <a href="fashion_1.html" class="project-item">
+          <img src="img/_DSF4081-Verbessert-RR-Bearbeitet.jpg" alt="Titel 1" />
+          <div class="project-title">Fashion</div>
+        </a>
+        <a href="fashion_2.html" class="project-item">
+          <img src="img/DSCF9219-Verbessert-RR.jpg" alt="Titel 2" />
+          <div class="project-title">Fashion</div>
+        </a>
+        <a href="fashion_3.html" class="project-item">
+          <img src="img/Modefotografie_Giggenbach-26.jpg" alt="Titel 3" />
+          <div class="project-title">Fashion</div>
+        </a>
+        <a href="product.html" class="project-item">
+          <img src="img/Zeichenfla%CC%88che%202.jpg" alt="Titel 4" />
+          <div class="project-title">Product</div>
+        </a>
+        <a href="fine-art.html" class="project-item">
+          <img src="img/Flora-Verbessert.jpg" alt="Titel 5" />
+          <div class="project-title">Fine Art</div>
+        </a>
+        <a href="schoeffel.html" class="project-item">
+          <img src="img/DSCF9133.jpg" alt="Titel 6" />
+          <div class="project-title">Schöffel</div>
+        </a>
       </div>
     </div>
 
@@ -304,6 +310,11 @@
       <a href="#" class="footer-link" id="mobile-contact-link">Contact</a>
       <a href="#" class="imprint-link" id="mobile-imprint-link">Imprint</a>
     </footer>
+    
+    <!-- Neuer Mobile "view work"-Button (mittig zentriert) -->
+    <button id="mobile-view-work-btn" class="view-work-btn">
+      view work <span class="arrow">➜</span>
+    </button>
 
     <script src="script.js"></script>
   </body>
