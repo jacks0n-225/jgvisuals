@@ -82,6 +82,18 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("❌ Desktop Projects-Link nicht gefunden!");
   }
 
+  // Neuer Desktop "view work"-Button
+  const desktopViewWorkBtn = document.getElementById("desktop-view-work-btn");
+  if (desktopViewWorkBtn && desktopSidebar) {
+    desktopViewWorkBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      desktopSidebar.classList.remove("imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
+      desktopSidebar.classList.add("expanded", "projects-active");
+    });
+  } else {
+    console.error("❌ Desktop View Work button not found!");
+  }
+
   // HELLO – Diese Seite soll beim Laden als erstes angezeigt werden
   const desktopHelloCloseBtn = document.getElementById("hello-close-btn");
   if (desktopHelloCloseBtn && desktopSidebar) {
@@ -172,13 +184,23 @@ document.addEventListener("DOMContentLoaded", function () {
   // HELLO – Auch im Mobile-Bereich soll der HELLO-Inhalt initial angezeigt werden
   const mobileHelloCloseBtn = document.getElementById("mobile-hello-close-btn");
   if (mobileHelloCloseBtn && mobileHeader) {
-    // Beim Laden den HELLO-Bereich anzeigen
     mobileHeader.classList.add("expanded", "hello-active");
     mobileHelloCloseBtn.addEventListener("click", function () {
       mobileHeader.classList.remove("expanded", "hello-active");
     });
   } else {
     console.error("❌ Mobile Hello-Schließ-Button nicht gefunden!");
+  }
+
+  // Neuer Mobile "view work"-Button – jetzt gleiche Aktion wie beim Hamburger-Menü
+  const mobileViewWorkBtn = document.getElementById("mobile-view-work-btn");
+  if (mobileViewWorkBtn) {
+    mobileViewWorkBtn.addEventListener("click", function(event) {
+      event.preventDefault();
+      menu.classList.add("active");
+    });
+  } else {
+    console.error("❌ Mobile View Work button not found!");
   }
 
   /* ----------------------
@@ -190,9 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (contactFormDesktop) {
     contactFormDesktop.addEventListener("submit", function (event) {
       event.preventDefault();
-      // Hier kann z.B. per AJAX die Nachricht versendet werden
       console.log("Desktop Kontaktformular abgeschickt!");
-      // Formular zurücksetzen
       contactFormDesktop.reset();
     });
   }
