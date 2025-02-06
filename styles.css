@@ -1,4 +1,3 @@
-
 /* --- RESET & GRUNDSTILE --- */
 * {
   margin: 0;
@@ -60,7 +59,6 @@ button,
 #hello-close-btn:hover{
   color: darkgrey;
 }
-
 
 /* Mobile-Hover */
 .mobile-header .logo:hover,
@@ -213,7 +211,7 @@ button,
 /* Spezieller Stil für den HELLO-Schließ-Button in der Desktop Sidebar */
 .sidebar-expanded-content.hello-content
 .mobile-expanded-content.hello-content {
-  text-align: justify; /* Statt justify, um alles zu zentrieren */
+  text-align: justify;
   padding: 20px;
   max-width: 70vw;
   width: auto;
@@ -307,7 +305,6 @@ button,
   opacity: 0;
   overflow: hidden;
   transition: height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
-  /* Keine extra Padding, da wir in den betroffenen Bereichen eigene Scrollcontainer nutzen */
   box-shadow: none;
   z-index: 10;
 }
@@ -318,10 +315,9 @@ button,
 .mobile-header.expanded.contact-active .contact-content,
 .mobile-header.expanded.projects-active .projects-content,
 .mobile-header.expanded.hello-active .hello-content {
-  /* Höhe so anpassen, dass 60px unten frei bleiben */
   height: calc(var(--vh) - var(--navbar-height) - 60px);
   opacity: 1;
-  padding: 0 0 60px 0; /* 60px Padding unten */
+  padding: 0 0 60px 0;
 }
 
 @supports (height: 100svh) {
@@ -331,12 +327,11 @@ button,
   .mobile-header.expanded.projects-active .projects-content,
   .mobile-header.expanded.hello-active .hello-content {
     height: calc(100svh - var(--navbar-height));
-    padding: 0 0 60px 0; /* 60px Padding unten */
+    padding: 0 0 60px 0;
   }
 }
 
 /* --- Spezifisch: Mobile Bereiche mit fixiertem Close-Button und scrollbarem Inhalt --- */
-/* Für Imprint, About und Contact */
 .mobile-expanded-content.imprint-content,
 .mobile-expanded-content.about-content,
 .mobile-expanded-content.contact-content {
@@ -353,7 +348,7 @@ button,
   top: 0;
   left: 0;
   right: 0;
-  height: 50px; /* Höhe des fixierten Bereichs */
+  height: 50px;
   z-index: 11;
   background: rgba(0,0,0,0);
 }
@@ -365,20 +360,19 @@ button,
   font-size: 3em;
   cursor: pointer;
   color: var(--text-color);
-  line-height: 50px; /* Gleiche Höhe wie der Container */
+  line-height: 50px;
 }
 
-/* Hier wird nun die Höhe so berechnet, dass 60px extra am unteren Rand sichtbar sind – dank box-sizing: content-box */
 .mobile-expanded-content.imprint-content .mobile-scrollable-content,
 .mobile-expanded-content.about-content .mobile-scrollable-content,
 .mobile-expanded-content.contact-content .mobile-scrollable-content {
-  margin-top: 50px; /* Platz für den fixierten Close-Button */
+  margin-top: 70px;
   box-sizing: content-box;
-  height: calc(100% - 50px - 60px); /* 60px werden extra hinzugefügt */
+  height: calc(100% - 50px - 60px);
   overflow-y: auto;
   padding: 10vw;
   padding-top: 0;
-  padding-bottom: 60px; /* Der gewünschte untere Abstand */
+  padding-bottom: 60px;
   position: relative;
 }
 
@@ -394,21 +388,20 @@ button,
   .mobile-expanded-content.contact-content .mobile-scrollable-content {
     box-sizing: content-box;
     height: calc(100svh - var(--navbar-height) - 50px - 60px);
-    padding: 10vw;
+    padding: 6vw;
     padding-top: 0;
     padding-bottom: 60px;
     position: relative;
   }
 }
 
-*/
 /* Mobile Schließ-Button (für Bereiche ohne extra Container) */
 .mobile-close-btn {
   text-align: center;
   font-size: 1.5em;
   cursor: pointer;
   color: var(--text-color);
-  padding: 20px;
+  padding: 10px;
 }
 
 /* Spezieller Stil für den HELLO-Button im Mobile-Bereich */
@@ -472,12 +465,10 @@ button,
   color: darkgrey;
 }
 
-/* Damit das Projektgrid im Overlay im passenden Verhältnis dargestellt wird */
 .menu-overlay .projects-grid {
   width: 90%;
 }
 
-/* Aktiv: Overlay sichtbar */
 .menu-overlay.active {
   transform: translateX(0);
 }
@@ -503,7 +494,6 @@ button,
     margin: calc(var(--vh) * 20) 5vw;
     width: calc(100vw - 20vw);
     height: calc(var(--vh) * 70);
-    display: grid;
     gap: calc(var(--vh) * 2);
     grid-auto-rows: 1fr;
   }
@@ -602,9 +592,9 @@ form {
 }
 
 @media(max-width: 699px){
- .form-group label {
-  font-size: 10px;
-} 
+  .form-group label {
+    font-size: 10px;
+  } 
 }
 .form-group input,
 .form-group textarea {
@@ -633,8 +623,8 @@ button[type="submit"] {
 
 @media(max-width: 699px){
   button[type="submit"]{
-  font-size: 10px;
-}
+    font-size: 10px;
+  }
 }
 
 button[type="submit"]:hover {
@@ -646,7 +636,7 @@ button[type="submit"]:hover {
 -------------------- */
 .about-image-container {
   width: 100%;
-  aspect-ratio: 20 / 9; /* Definiert das gewünschte Seitenverhältnis */
+  aspect-ratio: 20 / 9;
   overflow: hidden;
   margin-bottom: 20px;
 }
@@ -654,11 +644,10 @@ button[type="submit"]:hover {
 .about-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;   /* Skaliert das Bild so, dass der Container vollständig gefüllt wird */
-  object-position: center; /* Zentriert das Bild innerhalb des Containers */
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
-
 
 /* --------------------
    MOBILE FOOTER
@@ -672,7 +661,6 @@ button[type="submit"]:hover {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  text-align: center;
   gap: 10vw;
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
@@ -693,18 +681,15 @@ button[type="submit"]:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* Überschüssiges Bild wird abgeschnitten */
+  overflow: hidden;
 }
 
 .static-image img {
   width: 100vw;
   height: 100vh;
-  object-fit: cover;       /* Skaliert das Bild so, dass es den Container ausfüllt */
-  object-position: center; /* Zentriert das Bild */
+  object-fit: cover;
+  object-position: center;
 }
-
-
-
 
 /* --------------------
    SCROLLBAR AUSBLENDEN
@@ -724,4 +709,53 @@ button[type="submit"]:hover {
 }
 @media (max-width: 699px) {
   .desktop-sidebar { display: none; }
+}
+
+/* --- NEUER STYLE: VIEW WORK BUTTON --- */
+.view-work-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-family: 'Greycliff', Arial, sans-serif;
+}
+
+/* Desktop: fest rechts positioniert, oberhalb des Hintergrundbilds */
+#desktop-view-work-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  z-index: 50;
+  display: block;
+}
+@media (max-width: 699px) {
+  #desktop-view-work-btn {
+    display: none;
+  }
+}
+
+/* Falls die Sidebar im Desktop geöffnet ist, soll der Button ausgeblendet werden */
+.desktop-sidebar.expanded ~ #desktop-view-work-btn {
+  display: none;
+}
+
+/* Mobile: mittig zentriert */
+#mobile-view-work-btn {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  display: none;
+}
+@media (max-width: 699px) {
+  #mobile-view-work-btn {
+    display: block;
+  }
+}
+
+/* Optional: Hover-Effekt */
+.view-work-btn:hover {
+  color: darkgrey;
 }
