@@ -1,0 +1,718 @@
+
+/* --- RESET & GRUNDSTILE --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --background-color: #808080;
+  --text-color: #FFFFFF;
+  --navbar-height: 60px;  /* Höhe der oberen Zeile (Logo/Hamburger) */
+  --mobile-btn-size: 60px;
+}
+
+/* --- Schriftarten --- */
+@font-face {
+  font-family: 'Greycliff';
+  src: url('fonts/GreycliffCF-Medium.woff2') format('woff2'),
+       url('fonts/GreycliffCF-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Greycliff';
+  src: url('fonts/GreycliffCF-Bold.woff2') format('woff2'),
+       url('fonts/GreycliffCF-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Greycliff', Arial, sans-serif;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Allgemeine Hover-Regeln --- */
+a,
+button,
+.toggle_button .bar,
+.desktop-sidebar .logo,
+.imprint-link,
+.mobile-footer .imprint-link,
+.mobile-close-btn span.x,
+.close_button,
+.menu-overlay a,
+.footer-link {
+  transition: color 0.4s;
+}
+
+/* Desktop-Hover */
+.desktop-sidebar .logo:hover,
+.desktop-sidebar .nav-links a:hover,
+.desktop-sidebar .imprint-link:hover {
+  color: darkgrey;
+}
+
+#hello-close-btn:hover{
+  color: darkgrey;
+}
+
+
+/* Mobile-Hover */
+.mobile-header .logo:hover,
+.mobile-footer .imprint-link:hover,
+.footer-link:hover {
+  color: darkgrey;
+}
+.toggle_button:hover .bar {
+  background-color: darkgrey;
+}
+
+/* --------------------
+   DESKTOP SIDEBAR
+-------------------- */
+.desktop-sidebar {
+  position: fixed;
+  top: 42px; /* später per Media Query angepasst */
+  left: 0;
+  width: 30vw;
+  /* Fallback: 100% der Viewport-Höhe */
+  height: calc(var(--vh) * 100);
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  transition: width 0.4s ease;
+  overflow: visible;
+  z-index: 100;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.5);
+}
+@supports (height: 100svh) {
+  .desktop-sidebar {
+    height: 100svh;
+  }
+}
+
+@media (min-width: 700px) {
+  .desktop-sidebar {
+    top: 0;
+  }
+}
+
+.desktop-sidebar.expanded {
+  width: 100vw; /* Erweitert die Sidebar auf die volle Breite */
+}
+
+.desktop-sidebar.expanded .nav-links {
+  display: none;
+}
+
+.desktop-sidebar .logo-wrapper {
+  text-align: center;
+}
+
+.desktop-sidebar .logo {
+  font-size: 30px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.desktop-sidebar .nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.desktop-sidebar .nav-links li {
+  margin: 15px 0;
+}
+
+.desktop-sidebar .nav-links a {
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* --------------------
+   IMPRINT / ABOUT / CONTACT / PROJECTS-BEREICH DESKTOP
+-------------------- */
+.sidebar-expanded-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-color);
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  display: none;
+  font-size: 15px;
+  text-align: justify;
+  padding: 20px;
+  max-width: 70vw;
+  width: 90vw;
+  /* Fallback: 80% der Viewport-Höhe */
+  max-height: calc(var(--vh) * 80);
+  overflow-y: auto;
+}
+@supports (height: 100svh) {
+  .sidebar-expanded-content {
+    max-height: 80svh;
+  }
+}
+.sidebar-expanded-content.hello-content {
+  text-align: center;
+}
+
+/* Sichtbar, wenn Sidebar erweitert ist */
+.desktop-sidebar.expanded.imprint-active .imprint-content,
+.desktop-sidebar.expanded.about-active .about-content,
+.desktop-sidebar.expanded.contact-active .contact-content,
+.desktop-sidebar.expanded.projects-active .projects-content,
+.desktop-sidebar.expanded.hello-active .hello-content {
+  display: block;
+  opacity: 1;
+}
+
+/* Desktop Imprint-Link (unten) */
+.desktop-imprint-link {
+  font-size: 18px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.sidebar-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 2em;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.desktop-sidebar.expanded .sidebar-close-btn {
+  display: block;
+}
+
+/* Spezieller Stil für den HELLO-Schließ-Button in der Desktop Sidebar */
+.sidebar-expanded-content.hello-content
+.mobile-expanded-content.hello-content {
+  text-align: justify; /* Statt justify, um alles zu zentrieren */
+  padding: 20px;
+  max-width: 70vw;
+  width: auto;
+}
+
+.sidebar-expanded-content.hello-content .hello-text h1 {
+  font-size: 10vw;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.mobile-expanded-content.hello-content .hello-text h1 {
+  font-size: 20vw;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  white-space: nowrap;
+  color: var(--text-color);
+}
+
+/* Button in normaler Größe */
+.hello-close-btn {
+  font-size: 2vw; 
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.mobile-hello-btn {
+  font-size: 4vw !important; 
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+/* --------------------
+   MOBILE HEADER & INHALT
+-------------------- */
+.mobile-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 10;
+  box-shadow: 1px 0 6px rgba(0,0,0,0.5);
+  transition: box-shadow 0.5s ease;
+}
+
+.mobile-header.expanded {
+  box-shadow: none;
+}
+
+.header-top {
+  height: var(--navbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.mobile-header .logo {
+  font-size: 30px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.toggle_button {
+  width: 30px;
+  height: 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.bar {
+  height: 4px;
+  width: 100%;
+  background: var(--text-color);
+  border-radius: 100px;
+}
+
+/* Mobile erweiterte Inhaltsbereiche */
+.mobile-expanded-content {
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  /* Keine extra Padding, da wir in den betroffenen Bereichen eigene Scrollcontainer nutzen */
+  box-shadow: none;
+  z-index: 10;
+}
+
+/* Standard-Regelung für alle Expanded-Bereiche im Mobile Header */
+.mobile-header.expanded.imprint-active .imprint-content,
+.mobile-header.expanded.about-active .about-content,
+.mobile-header.expanded.contact-active .contact-content,
+.mobile-header.expanded.projects-active .projects-content,
+.mobile-header.expanded.hello-active .hello-content {
+  /* Höhe so anpassen, dass 60px unten frei bleiben */
+  height: calc(var(--vh) - var(--navbar-height) - 60px);
+  opacity: 1;
+  padding: 0 0 60px 0; /* 60px Padding unten */
+}
+
+@supports (height: 100svh) {
+  .mobile-header.expanded.imprint-active .imprint-content,
+  .mobile-header.expanded.about-active .about-content,
+  .mobile-header.expanded.contact-active .contact-content,
+  .mobile-header.expanded.projects-active .projects-content,
+  .mobile-header.expanded.hello-active .hello-content {
+    height: calc(100svh - var(--navbar-height));
+    padding: 0 0 60px 0; /* 60px Padding unten */
+  }
+}
+
+/* --- Spezifisch: Mobile Bereiche mit fixiertem Close-Button und scrollbarem Inhalt --- */
+/* Für Imprint, About und Contact */
+.mobile-expanded-content.imprint-content,
+.mobile-expanded-content.about-content,
+.mobile-expanded-content.contact-content {
+  position: relative;
+  overflow: hidden;
+  font-size: 10px;
+  color: var(--text-color);
+}
+
+.mobile-expanded-content.imprint-content .mobile-close-container,
+.mobile-expanded-content.about-content .mobile-close-container,
+.mobile-expanded-content.contact-content .mobile-close-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px; /* Höhe des fixierten Bereichs */
+  z-index: 11;
+  background: rgba(0,0,0,0);
+}
+
+.mobile-expanded-content.imprint-content .mobile-close-btn,
+.mobile-expanded-content.about-content .mobile-close-btn,
+.mobile-expanded-content.contact-content .mobile-close-btn {
+  text-align: center;
+  font-size: 3em;
+  cursor: pointer;
+  color: var(--text-color);
+  line-height: 50px; /* Gleiche Höhe wie der Container */
+}
+
+/* Hier wird nun die Höhe so berechnet, dass 60px extra am unteren Rand sichtbar sind – dank box-sizing: content-box */
+.mobile-expanded-content.imprint-content .mobile-scrollable-content,
+.mobile-expanded-content.about-content .mobile-scrollable-content,
+.mobile-expanded-content.contact-content .mobile-scrollable-content {
+  margin-top: 90px; /* Platz für den fixierten Close-Button */
+  box-sizing: content-box;
+  height: calc(100% - 50px - 60px); /* 60px werden extra hinzugefügt */
+  overflow-y: auto;
+  padding: 10vw;
+  padding-top: 0;
+  padding-bottom: 60px; /* Der gewünschte untere Abstand */
+  position: relative;
+}
+@supports (height: 100svh) {
+  .mobile-expanded-content.imprint-content .mobile-scrollable-content,
+  .mobile-expanded-content.about-content .mobile-scrollable-content,
+  .mobile-expanded-content.contact-content .mobile-scrollable-content {
+    box-sizing: content-box;
+    height: calc(100svh - var(--navbar-height) - 50px - 60px);
+    padding: 10vw;
+    padding-top: 0;
+    padding-bottom: 60px;
+    position: relative;
+  }
+}
+
+*/
+/* Mobile Schließ-Button (für Bereiche ohne extra Container) */
+.mobile-close-btn {
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 20px;
+}
+
+/* Spezieller Stil für den HELLO-Button im Mobile-Bereich */
+.mobile-hello-btn {
+  text-align: center;
+  font-size: 3em;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 20px;
+}
+
+.mobile-expanded-content.hello-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.desktop-sidebar.expanded.hello-active .sidebar-close-btn {
+  display: none !important;
+}
+
+/* --------------------
+   MENU OVERLAY (MOBILE)
+-------------------- */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--vh) * 100);
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%);
+  transition: transform 0.4s ease-in-out;
+  z-index: 1000;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.5);
+}
+@supports (height: 100svh) {
+  .menu-overlay {
+    height: 100svh;
+  }
+}
+
+.menu-overlay .close_button {
+  position: absolute;
+  top: 10px;
+  right: 22px;
+  font-size: 3em;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.menu-overlay .close_button:hover {
+  color: darkgrey;
+}
+
+/* Damit das Projektgrid im Overlay im passenden Verhältnis dargestellt wird */
+.menu-overlay .projects-grid {
+  width: 90%;
+}
+
+/* Aktiv: Overlay sichtbar */
+.menu-overlay.active {
+  transform: translateX(0);
+}
+
+/* Projekte-Grid */
+.projects-grid {
+  height: calc(var(--vh) * 70);
+  display: grid;
+  gap: calc(var(--vh) * 2);
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
+}
+@supports (height: 100svh) {
+  .projects-grid {
+    height: calc(100svh - 30svh);
+  }
+}
+
+/* Mobile Anpassung: 2 Spalten */
+@media (max-width: 699px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin: calc(var(--vh) * 20) 5vw;
+    width: calc(100vw - 20vw);
+    height: calc(var(--vh) * 70);
+    display: grid;
+    gap: calc(var(--vh) * 2);
+    grid-auto-rows: 1fr;
+  }
+  @supports (height: 100svh) {
+    .projects-grid {
+      height: calc(100svh - 20svh);
+      margin: 20svh 5vw;
+    }
+  }
+}
+
+.project-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+} 
+
+.project-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--text-color);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 5px 10px;
+}
+
+.project-item img:hover {
+  filter: grayscale(0%);
+} 
+
+.project-item:hover .project-title {
+  opacity: 1;
+}
+
+/* --------------------
+   HORIZONTALES SCROLLING
+-------------------- */
+.image-scroller {
+  width: 100vw;
+  height: calc(var(--vh) * 100);
+  background: #222;
+  overflow-x: auto;
+  display: flex;
+  scroll-behavior: smooth;
+}
+@supports (height: 100svh) {
+  .image-scroller {
+    height: 100svh;
+  }
+}
+
+.image-wrapper {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+  height: calc(var(--vh) * 100);
+}
+@supports (height: 100svh) {
+  .image-wrapper {
+    height: 100svh;
+  }
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------
+   Formular-Styling
+-------------------- */
+form {
+  margin-top: 20px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+@media(max-width: 699px){
+ .form-group label {
+  font-size: 10px;
+} 
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.form-group input {
+  height: 35px;
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+button[type="submit"] {
+  background-color: var(--text-color);
+  color: #000;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+@media(max-width: 699px){
+  button[type="submit"]{
+  font-size: 10px;
+}
+}
+
+button[type="submit"]:hover {
+  background-color: darkgrey;
+}
+
+/* --------------------
+   Stil für das About-Bild
+-------------------- */
+.about-image-container {
+  width: 100%;
+  aspect-ratio: 20 / 9; /* Definiert das gewünschte Seitenverhältnis */
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* Skaliert das Bild so, dass der Container vollständig gefüllt wird */
+  object-position: center; /* Zentriert das Bild innerhalb des Containers */
+  display: block;
+}
+
+
+/* --------------------
+   MOBILE FOOTER
+-------------------- */
+.mobile-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  gap: 10vw;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-footer a {
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.static-image {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-content: center;
+  width: 100vw;
+  height: calc(var(--vh) * 100);
+}
+@supports (height: 100svh) {
+  .static-image {
+    height: 100svh;
+  }
+}
+
+
+
+
+/* --------------------
+   SCROLLBAR AUSBLENDEN
+-------------------- */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* --------------------
+   MEDIA QUERIES
+-------------------- */
+@media (min-width: 700px) {
+  .desktop-sidebar { display: block; }
+  .mobile-header,
+  .mobile-footer { display: none; }
+}
+@media (max-width: 699px) {
+  .desktop-sidebar { display: none; }
+}

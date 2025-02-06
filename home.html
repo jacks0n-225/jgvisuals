@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Horizontal Image Scroll</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- DESKTOP SIDEBAR (ab 700px sichtbar) -->
+    <nav class="desktop-sidebar" id="desktop-sidebar">
+      <div class="logo-wrapper">
+        <a class="logo" href="home.html">JGVISUALS</a>
+      </div>
+      <ul class="nav-links">
+        <!-- Desktop Projects-Link angepasst -->
+        <li><a href="#" id="desktop-projects-link">Projects</a></li>
+        <li><a href="#" id="desktop-about-link">About</a></li>
+        <li><a href="#" id="desktop-contact-link">Contact</a></li>
+      </ul>
+      <!-- Desktop Imprint-Link -->
+      <a href="#" class="imprint-link desktop-imprint-link" id="desktop-imprint-link">Imprint</a>
+      <!-- Desktop Sidebar-Schließ-Button (wird bei normalen erweiterten Inhalten genutzt) -->
+      <button id="sidebar-close-btn" class="sidebar-close-btn">
+        <span class="x">&#10005;</span>
+      </button>
+      <!-- Desktop erweiterte Inhaltsbereiche -->
+      <div class="sidebar-expanded-content imprint-content" id="sidebar-expanded-imprint">
+        <p>
+          <strong>Impressum</strong><br>
+          Jakob Giggenbach Visuals<br>
+          Jakob Giggenbach<br>
+          Am Kapelle 9<br>
+          86647 Buttenwiesen<br><br>
+          <strong>Inhaber:</strong> Jakob Giggenbach<br><br>
+          <strong>Kontaktinformationen</strong><br>
+          Telefon: +49 172 53 15 385<br>
+          E-Mail: jakob.giggenbach@jgvisuals.de<br><br>
+          <strong>Umsatzsteuer-Nr.</strong> DE337741144<br><br>
+          <strong>Haftungsausschluss (Disclaimer)</strong><br>
+          <em>Haftung für Inhalte</em><br>
+          Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.<br><br>
+          <em>Haftung für Links</em><br>
+          Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.<br><br>
+          Quelle: eRecht24.de<br><br>
+          © Copyright Jakob Giggenbach Visuals 2024.
+        </p>
+      </div>
+     <div class="sidebar-expanded-content about-content" id="sidebar-expanded-about">
+  <!-- Container für das Bild -->
+  <div class="about-image-container">
+    <img src="img/img212.jpg" alt="About Image" class="about-image" />
+  </div>
+  
+  <p>
+    I'm Jakob Giggenbach, a dedicated photography student with a focus on Foto-Design at the University of Applied Sciences in Munich. My creative heart beats for the intersection of Fashion, Product Photography, and Film. I seek to weave narratives into every shot, blending the elegance of fashion with the precision of product aesthetics. My films extend these stories into dynamic sequences, filled with emotion and expression. The addition of CGI allows me to construct imaginative realities that enhance and elevate my visual storytelling. For opportunities to collaborate or to see more of my work, please reach out.
+  </p>
+</div>
+      <div class="sidebar-expanded-content contact-content" id="sidebar-expanded-contact">
+        <p>
+          <strong>Get in Touch</strong><br><br>
+          Jakob Giggenbach Visuals<br><br>
+          E-Mail: <a href="mailto:jakob.giggenbach@jgvisuals.de" style="color: var(--text-color);">jakob.giggenbach@jgvisuals.de</a><br><br>
+          Tel: +49 172 53 15 385
+        </p>
+        <!-- Kontaktformular Desktop -->
+        <form id="contact-form-desktop" action="#" method="post">
+          <div class="form-group">
+            <label for="full-name-desktop">Full Name</label>
+            <input type="text" id="full-name-desktop" name="full-name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="email-desktop">E-Mail</label>
+            <input type="email" id="email-desktop" name="email" placeholder="Your email" required />
+          </div>
+          <div class="form-group">
+            <label for="message-desktop">Message</label>
+            <textarea id="message-desktop" name="message" placeholder="Your message" required></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+      <!-- Neuer Desktop Projects-Bereich -->
+      <div class="sidebar-expanded-content projects-content" id="sidebar-expanded-projects">
+        <div class="projects-grid">
+          <a href="fashion_1.html" class="project-item">
+            <img src="img/_DSF4081-Verbessert-RR-Bearbeitet.jpg" alt="Titel 1" />
+            <div class="project-title">Fashion</div>
+          </a>
+          <a href="fashion_2.html" class="project-item">
+            <img src="img/DSCF9219-Verbessert-RR.jpg" alt="Titel 2" />
+            <div class="project-title">Fashion</div>
+          </a>
+          <a href="fashion_3.html" class="project-item">
+            <img src="img/Modefotografie_Giggenbach-26.jpg" alt="Titel 3" />
+            <div class="project-title">Fashion</div>
+          </a>
+          <a href="product.html" class="project-item">
+            <img src="img/Zeichenfla%CC%88che%202.jpg" alt="Titel 4" />
+            <div class="project-title">Product</div>
+          </a>
+          <a href="fine-art.html" class="project-item">
+            <img src="img/Flora-Verbessert.jpg" alt="Titel 5" />
+            <div class="project-title">Fine Art</div>
+          </a>
+          <a href="schoeffel.html" class="project-item">
+            <img src="img/DSCF9133.jpg" alt="Titel 6" />
+            <div class="project-title">Schöffel</div>
+          </a>
+        </div>
+      </div>
+      <!-- Neuer Desktop HELLO-Bereich -->
+      <div class="sidebar-expanded-content hello-content" id="sidebar-expanded-hello">
+        <div class="hello-text">
+          <h1>HELLO!</h1>
+        </div>
+        <!-- Der Button übernimmt weiterhin die Schließfunktion -->
+        <div id="hello-close-btn" class="hello-close-btn">view portfolio</div>
+      </div>
+    </nav>
+
+    <!-- MOBILE HEADER -->
+    <header class="mobile-header" id="mobile-header">
+      <div class="header-top">
+        <a class="logo" href="home.html">JGVISUALS</a>
+        <a href="#" class="toggle_button" id="menu-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+      </div>
+      <!-- Mobile erweiterte Inhaltsbereiche -->
+      <!-- Imprint -->
+      <div class="mobile-expanded-content imprint-content" id="mobile-imprint-content">
+        <div class="mobile-close-container">
+          <div class="mobile-close-btn" id="mobile-imprint-close-btn">
+            <span class="x">&#10005;</span>
+          </div>
+        </div>
+        <div class="mobile-scrollable-content">
+          <div class="scroll-content">
+            <div class="mobile-content-text">
+              <p>
+                <strong>Impressum</strong><br>
+                Jakob Giggenbach Visuals<br>
+                Jakob Giggenbach<br>
+                Am Kapelle 9<br>
+                86647 Buttenwiesen<br><br>
+                <strong>Inhaber:</strong> Jakob Giggenbach<br><br>
+                <strong>Kontaktinformationen</strong><br>
+                Telefon: +49 172 53 15 385<br>
+                E-Mail: jakob.giggenbach@jgvisuals.de<br><br>
+                <strong>Umsatzsteuer-Nr.</strong> DE337741144<br><br>
+                <strong>Haftungsausschluss (Disclaimer)</strong><br>
+                <em>Haftung für Inhalte</em><br>
+                Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.<br><br>
+                <em>Haftung für Links</em><br>
+                Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.<br><br>
+                Quelle: eRecht24.de<br><br>
+                © Copyright Jakob Giggenbach Visuals 2024.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- About -->
+      <div class="mobile-expanded-content about-content" id="mobile-about-content">
+        <div class="mobile-close-container">
+          <div class="mobile-close-btn" id="mobile-about-close-btn">
+            <span class="x">&#10005;</span>
+          </div>
+        </div>
+        <div class="mobile-scrollable-content">
+          <div class="scroll-content">
+            <div class="mobile-content-text">
+              <img src="img/img212.jpg" alt="About Image" class="about-image" />
+              <p>
+                I'm Jakob Giggenbach, a dedicated photography student with a focus on Foto-Design at the University of Applied Sciences in Munich. My creative heart beats for the intersection of Fashion, Product Photography, and Film. I seek to weave narratives into every shot, blending the elegance of fashion with the precision of product aesthetics. My films extend these stories into dynamic sequences, filled with emotion and expression. The addition of CGI allows me to construct imaginative realities that enhance and elevate my visual storytelling. For opportunities to collaborate or to see more of my work, please reach out.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Contact -->
+      <div class="mobile-expanded-content contact-content" id="mobile-contact-content">
+        <div class="mobile-close-container">
+          <div class="mobile-close-btn" id="mobile-contact-close-btn">
+            <span class="x">&#10005;</span>
+          </div>
+        </div>
+        <div class="mobile-scrollable-content">
+          <div class="scroll-content">
+            <div class="mobile-content-text">
+              <p>
+                <strong>Get in Touch</strong><br><br>
+                Jakob Giggenbach Visuals<br><br>
+                E-Mail: <a href="mailto:jakob.giggenbach@jgvisuals.de" style="color: var(--text-color);">jakob.giggenbach@jgvisuals.de</a><br><br>
+                Tel: 0172-5315385
+              </p>
+              <!-- Kontaktformular Mobile -->
+              <form id="contact-form-mobile" action="#" method="post">
+                <div class="form-group">
+                  <label for="full-name-mobile">Full Name</label>
+                  <input type="text" id="full-name-mobile" name="full-name" placeholder="Your full name" required />
+                </div>
+                <div class="form-group">
+                  <label for="email-mobile">E-Mail</label>
+                  <input type="email" id="email-mobile" name="email" placeholder="Your email" required />
+                </div>
+                <div class="form-group">
+                  <label for="message-mobile">Message</label>
+                  <textarea id="message-mobile" name="message" placeholder="Your message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Neuer Mobile Projects-Bereich (unverändert) -->
+      <div class="mobile-expanded-content projects-content" id="mobile-projects-content">
+        <div class="mobile-close-btn" id="mobile-projects-close-btn">
+          <span class="x">&#10005;</span>
+        </div>
+        <div class="projects-grid">
+          <a href="project1.html" class="project-item">
+            <img src="img/DSCF7739-Bearbeitet.jpg" alt="Titel 1" />
+            <div class="project-title">Titel 1</div>
+          </a>
+          <a href="project2.html" class="project-item">
+            <img src="img/Unbenannt-2.jpg" alt="Titel 2" />
+            <div class="project-title">Titel 2</div>
+          </a>
+          <a href="project3.html" class="project-item">
+            <img src="img/Zeichenfläche 2.jpg" alt="Titel 3" />
+            <div class="project-title">Titel 3</div>
+          </a>
+          <a href="project4.html" class="project-item">
+            <img src="img/Modefotografie_Giggenbach-26.jpg" alt="Titel 4" />
+            <div class="project-title">Titel 4</div>
+          </a>
+          <a href="index.html" class="project-item">
+            <img src="img/_DSF4081-Verbessert-RR-Bearbeitet.jpg" alt="Titel 5" />
+            <div class="project-title">Titel 5</div>
+          </a>
+          <a href="project6.html" class="project-item">
+            <img src="img/Japan-2.jpg" alt="Titel 6" />
+            <div class="project-title">Titel 6</div>
+          </a>
+        </div>
+      </div>
+      <!-- Neuer Mobile HELLO-Bereich (unverändert) -->
+      <div class="mobile-expanded-content hello-content" id="mobile-hello-content">
+        <div class="hello-text">
+          <h1>HELLO!</h1>
+        </div>
+        <!-- Der Button ersetzt hier den bisherigen HELLO-Button -->
+        <div class="mobile-hello-btn" id="mobile-hello-close-btn">view portfolio</div>
+      </div>
+    </header>
+
+    <!-- MOBILE MENÜ OVERLAY -->
+    <div class="menu-overlay" id="menu">
+      <a href="#" class="close_button" id="menu-close">&#10005;</a>
+      <div class="projects-grid">
+          <a href="fashion_1.html" class="project-item">
+            <img src="img/_DSF4081-Verbessert-RR-Bearbeitet.jpg" alt="Titel 1" />
+            <div class="project-title">Fashion</div>
+          </a>
+          <a href="fashion_2.html" class="project-item">
+            <img src="img/DSCF9219-Verbessert-RR.jpg" alt="Titel 2" />
+            <div class="project-title">Fashion</div>
+          </a>
+          <a href="fashion_3.html" class="project-item">
+            <img src="img/Modefotografie_Giggenbach-26.jpg" alt="Titel 3" />
+            <div class="project-title">Fashion</div>
+          </a>
+          <a href="product.html" class="project-item">
+            <img src="img/Zeichenfla%CC%88che%202.jpg" alt="Titel 4" />
+            <div class="project-title">Product</div>
+          </a>
+          <a href="fine-art.html" class="project-item">
+            <img src="img/Flora-Verbessert.jpg" alt="Titel 5" />
+            <div class="project-title">Fine Art</div>
+          </a>
+          <a href="schoeffel.html" class="project-item">
+            <img src="img/DSCF9133.jpg" alt="Titel 6" />
+            <div class="project-title">Schöffel</div>
+          </a>
+      </div>
+    </div>
+
+    <main>
+      <section class="image-scroller">
+        <div class="static-image">
+          <img src="img/img212.jpg" alt="Image 1" />
+        </div>
+      </section>
+    </main>
+
+    <!-- MOBILE FOOTER -->
+    <footer class="mobile-footer">
+      <a href="#" class="footer-link" id="mobile-about-link">About</a>
+      <a href="#" class="footer-link" id="mobile-contact-link">Contact</a>
+      <a href="#" class="imprint-link" id="mobile-imprint-link">Imprint</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
