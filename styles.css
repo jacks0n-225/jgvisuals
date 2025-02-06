@@ -372,7 +372,7 @@ button,
 .mobile-expanded-content.imprint-content .mobile-scrollable-content,
 .mobile-expanded-content.about-content .mobile-scrollable-content,
 .mobile-expanded-content.contact-content .mobile-scrollable-content {
-  margin-top: 90px; /* Platz für den fixierten Close-Button */
+  margin-top: 50px; /* Platz für den fixierten Close-Button */
   box-sizing: content-box;
   height: calc(100% - 50px - 60px); /* 60px werden extra hinzugefügt */
   overflow-y: auto;
@@ -381,6 +381,13 @@ button,
   padding-bottom: 60px; /* Der gewünschte untere Abstand */
   position: relative;
 }
+
+.mobile-expanded-content.imprint-content .mobile-scrollable-content p,
+.mobile-expanded-content.about-content .mobile-scrollable-content p,
+.mobile-expanded-content.contact-content .mobile-scrollable-content p {
+  padding-top: 10px;
+}
+
 @supports (height: 100svh) {
   .mobile-expanded-content.imprint-content .mobile-scrollable-content,
   .mobile-expanded-content.about-content .mobile-scrollable-content,
@@ -681,17 +688,19 @@ button[type="submit"]:hover {
 }
 
 .static-image {
-  display: flex;
   position: fixed;
-  justify-content: center;
-  align-content: center;
+  top: 0;
+  left: 0;
   width: 100vw;
-  height: calc(var(--vh) * 100);
+  height: 100vh;
+  overflow: hidden; /* Überschüssiges Bild wird abgeschnitten */
 }
-@supports (height: 100svh) {
-  .static-image {
-    height: 100svh;
-  }
+
+.static-image img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;       /* Skaliert das Bild so, dass es den Container ausfüllt */
+  object-position: center; /* Zentriert das Bild */
 }
 
 
