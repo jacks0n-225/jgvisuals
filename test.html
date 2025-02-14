@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Horizontal Image Scroll</title>
+    <link rel="stylesheet" href="test.css" />
+  </head>
+  <body>
+    <!-- Das Hintergrund-Overlay -->
+    <div
+      class="background-overlay"
+      style="background-image: url('img/_DSF4318-Verbessert-RR-Bearbeitet.jpg');"
+    ></div>
+
+    <!-- DESKTOP SIDEBAR -->
+    <nav class="desktop-sidebar" id="desktop-sidebar">
+      <div class="logo-wrapper">
+        <a class="logo" href="home.html">JGVISUALS</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" id="desktop-projects-link">Projects</a></li>
+        <li><a href="#" id="desktop-about-link">About</a></li>
+        <li><a href="#" id="desktop-contact-link">Contact</a></li>
+      </ul>
+      <a href="#" class="imprint-link desktop-imprint-link" id="desktop-imprint-link">Imprint</a>
+      <button id="sidebar-close-btn" class="sidebar-close-btn">
+        <span class="x">&#10005;</span>
+      </button>
+
+      <!-- Erweiterten Inhalte: Imprint, About, Contact und Projects -->
+      <!-- Imprint -->
+      <div class="sidebar-expanded-content imprint-content" id="sidebar-expanded-imprint">
+        <div class="inner-content">
+          <p>
+            <strong>Impressum</strong><br />
+            Jakob Giggenbach Visuals<br />
+            Jakob Giggenbach<br />
+            Am Kapelle 9<br />
+            86647 Buttenwiesen<br /><br />
+            <strong>Inhaber:</strong> Jakob Giggenbach<br /><br />
+            <strong>Kontaktinformationen</strong><br />
+            Telefon: +49 172 53 15 385<br />
+            E-Mail: jakob.giggenbach@jgvisuals.de<br /><br />
+            <strong>Umsatzsteuer-Nr.</strong> DE337741144<br /><br />
+            <strong>Haftungsausschluss (Disclaimer)</strong><br />
+            <em>Haftung für Inhalte</em>
+          </p>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div class="sidebar-expanded-content about-content" id="sidebar-expanded-about">
+        <div class="inner-content">
+          <div class="about-image-container">
+            <img src="img/img212.jpg" alt="About Image" class="about-image" />
+          </div>
+          <p>
+            I'm Jakob Giggenbach, a dedicated photography student with a focus on
+            Foto-Design at the University of Applied Sciences in Munich.
+          </p>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="sidebar-expanded-content contact-content" id="sidebar-expanded-contact">
+        <div class="inner-content">
+          <p>
+            <strong>Get in Touch</strong><br /><br />
+            Jakob Giggenbach Visuals<br /><br />
+            E-Mail:
+            <a href="mailto:jakob.giggenbach@jgvisuals.de" style="color: var(--text-color);">
+              jakob.giggenbach@jgvisuals.de
+            </a><br /><br />
+            Tel: +49 172 53 15 385
+          </p>
+        </div>
+      </div>
+
+      <!-- Projects-Bereich (Projects Grid) -->
+      <div class="sidebar-expanded-content projects-area" id="sidebar-expanded-projects">
+        <div class="projects-grid">
+          <div class="grid">
+            <!-- Eine Reihe mit zwei Kopien für den Endlos-Scroll-Effekt -->
+            <div class="projects-row row1">
+              <div class="projects-wrapper1">
+                <!-- Kopie 1 -->
+                <div class="projects-content">
+                  <img src="img/_DSF4081-Verbessert-RR-Bearbeitet.jpg" alt="Bild 1" class="bild1" />
+                  <img src="img/DSCF7739-Bearbeitet.jpg" alt="Bild 2" class="bild2" />
+                  <img src="img/Flora-Verbessert.jpg" alt="Bild 3" />
+                  <img src="img/Modefotografie_Giggenbach-26.jpg" alt="Bild 4" />
+                  <img src="img/DSCF9219-Verbessert-RR.jpg" alt="Bild 5" />
+                </div>
+                <!-- Kopie 2 -->
+                <div class="projects-content">
+                  <img src="img/_DSF4081-Verbessert-RR-Bearbeitet.jpg" alt="Bild 1" class="bild1" />
+                  <img src="img/DSCF7739-Bearbeitet.jpg" alt="Bild 2" class="bild2" />
+                  <img src="img/Flora-Verbessert.jpg" alt="Bild 3" />
+                  <img src="img/Modefotografie_Giggenbach-26.jpg" alt="Bild 4" />
+                  <img src="img/DSCF9219-Verbessert-RR.jpg" alt="Bild 5" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects Indicator (zentriert in der Sidebar) -->
+      <div class="projects-indicator-wrapper">
+        <div class="projects-indicator">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Image Scroller -->
+      <section class="image-scroller">
+        <div class="image-scroller-wrapper">
+          <!-- Kopie 1 -->
+          <div class="image-set">
+            <div class="image-wrapper">
+              <img src="img/_DSF4081-Verbessert-RR-Bearbeitet.jpg" alt="Image 1" />
+            </div>
+            <div class="image-wrapper">
+              <img src="img/_DSF4109-Verbessert-RR-Bearbeitet.jpg" alt="Image 2" />
+            </div>
+            <div class="image-wrapper">
+              <img src="img/_DSF4122-Verbessert-RR-Bearbeitet.jpg" alt="Image 3" />
+            </div>
+            <div class="image-wrapper">
+              <img src="img/_DSF4224-Verbessert-RR-Bearbeitet.jpg" alt="Image 4" />
+            </div>
+            <div class="image-wrapper">
+              <img src="img/_DSF4318-Verbessert-RR-Bearbeitet.jpg" alt="Image 5" />
+            </div>
+          </div>
+          <!-- Kopie 2 -->
+          <div class="image-set">
+            <div class="image-wrapper">
+              <img src="img/_DSF4081-Verbessert-RR-Bearbeitet.jpg" alt="Image 1" />
+            </div>
+            <div class="image-wrapper">
+              <img src="img/_DSF4109-Verbessert-RR-Bearbeitet.jpg" alt="Image 2" />
+            </div>
+            <div class="image-wrapper">
+              <img src="img/_DSF4122-Verbessert-RR-Bearbeitet.jpg" alt="Image 3" />
+            </div>
+            <div class="image-wrapper">
+              <img src="img/_DSF4224-Verbessert-RR-Bearbeitet.jpg" alt="Image 4" />
+            </div>
+            <div class="image-wrapper">
+              <img src="img/_DSF4318-Verbessert-RR-Bearbeitet.jpg" alt="Image 5" />
+            </div>
+          </div>
+        </div>
+        <!-- Neuer Image Scroller Indicator (unten rechts) -->
+        <div class="image-indicator-wrapper">
+          <div class="image-indicator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Neuer Tooltip für Projects Grid (wird beim Hover angezeigt) -->
+    <div id="project-tooltip">view project</div>
+
+    <!-- CUSTOM CURSOR (ohne Gradient-Kreis) -->
+    <div id="custom-cursor">
+      <div class="cursor-scroll-icon"></div>
+    </div>
+
+    <script src="test.js"></script>
+  </body>
+</html>
