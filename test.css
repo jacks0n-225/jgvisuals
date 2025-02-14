@@ -1,380 +1,420 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Globales Overlay-Mapping und Overlay-Referenz (für beide Bereiche)
-  const overlayMapping = {
-    "Bild 1": "img/_DSF4318-Verbessert-RR-Bearbeitet.jpg",
-    "Bild 2": "img/DSCF7739-Bearbeitet.jpg",
-    "Bild 3": "img/Flora-Verbessert.jpg",
-    "Bild 4": "img/Modefotografie_Giggenbach-26.jpg",
-    "Bild 5": "img/DSCF9219-Verbessert-RR.jpg"
-  };
-  const overlay = document.querySelector(".background-overlay");
+/* --- RESET & GRUNDSTILE --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --background-color: #808080;
+  --text-color: #FFFFFF;
+}
 
-  // Globaler Mauszeiger-Tracker (für automatische Hover-Updates im Projects Grid)
-  let lastMouseX = 0;
-  let lastMouseY = 0;
-  document.addEventListener("mousemove", function (e) {
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
-  });
+/* --- Schriftarten --- */
+@font-face {
+  font-family: 'Greycliff';
+  src: url('fonts/GreycliffCF-Medium.woff2') format('woff2'),
+       url('fonts/GreycliffCF-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Greycliff';
+  src: url('fonts/GreycliffCF-Bold.woff2') format('woff2'),
+       url('fonts/GreycliffCF-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
 
-  /**
-   * Prüft anhand der aktuellen Mausposition, welches Element unter dem Cursor liegt.
-   * Befindet sich dort ein Bild aus dem Projects‑Grid, wird das Overlay aktualisiert.
-   */
-  function checkOverlayHover() {
-    if (!overlay) return;
-    const elem = document.elementFromPoint(lastMouseX, lastMouseY);
-    if (elem && elem.tagName === "IMG" && elem.closest(".projects-content")) {
-      const altText = elem.getAttribute("alt");
-      if (overlayMapping[altText]) {
-        overlay.style.backgroundImage = `url('${overlayMapping[altText]}')`;
-      }
-      overlay.style.visibility = "visible";
-      overlay.style.opacity = "1";
-    } else {
-      overlay.style.opacity = "0";
-      overlay.style.visibility = "hidden";
-    }
+html,
+body {
+  height: 100%;
+  font-family: 'Greycliff', Arial, sans-serif;
+  /* Der originale Cursor bleibt sichtbar */
+  margin: 0;
+  padding: 0;
+}
+
+/* Hintergrund-Overlay */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+  z-index: 10;
+}
+
+/* --------------------
+   DESKTOP SIDEBAR
+-------------------- */
+.desktop-sidebar {
+  position: fixed;
+  top: 42px;
+  left: 0;
+  width: 30vw;
+  height: calc(var(--vh) * 100);
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  transition: width 0.4s ease;
+  overflow: visible;
+  z-index: 100;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.5);
+}
+@supports (height: 100svh) {
+  .desktop-sidebar {
+    height: 100svh;
   }
+}
+.desktop-sidebar {
+  top: 0;
+}
+.desktop-sidebar.expanded {
+  width: 100vw;
+}
+.desktop-sidebar.expanded .nav-links {
+  display: none;
+}
+.desktop-sidebar .logo-wrapper {
+  text-align: center;
+}
+.desktop-sidebar .logo {
+  font-size: 30px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+.desktop-sidebar .nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.desktop-sidebar .nav-links li {
+  margin: 15px 0;
+}
+.desktop-sidebar .nav-links a {
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+}
 
-  /* ---------------------------------------------------
-     IMAGE SCROLLER – ENDLOS SCROLLING (analog zum Projects Grid)
-  --------------------------------------------------- */
-  let imagePos = 0;
-  let imageBaseDimension = 0;
-
-  function updateImageBaseDimension() {
-    const imageSet = document.querySelector('.image-set');
-    if (!imageSet) return;
-    imageBaseDimension = imageSet.offsetWidth;
-    imagePos = 0;
-    updateImageIndicator();
+/* --------------------
+   SIDEBAR EXPANDED CONTENT
+-------------------- */
+.sidebar-expanded-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-color);
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  display: none;
+  font-size: 15px;
+  text-align: justify;
+  padding: 20px;
+  width: 100vw;
+  max-width: 100vw;
+  max-height: calc(var(--vh) * 80);
+  overflow-y: auto;
+}
+@supports (height: 100svh) {
+  .sidebar-expanded-content {
+    max-height: 80svh;
   }
-  updateImageBaseDimension();
-  window.addEventListener("resize", updateImageBaseDimension);
+}
+.sidebar-expanded-content.hello-content {
+  text-align: center;
+}
+.desktop-sidebar.expanded.imprint-active .imprint-content,
+.desktop-sidebar.expanded.about-active .about-content,
+.desktop-sidebar.expanded.contact-active .contact-content {
+  display: block;
+  opacity: 1;
+}
+.sidebar-expanded-content.about-content .inner-content,
+.sidebar-expanded-content.contact-content .inner-content,
+.sidebar-expanded-content.contact-content .inner-content {
+  width: 70vw;
+  max-width: 70vw;
+  margin: 0 auto;
+}
+.sidebar-expanded-content.projects-area {
+  display: none;
+  opacity: 0;
+}
+.desktop-sidebar.expanded.projects-active .sidebar-expanded-content.projects-area {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  overflow: hidden;
+  display: block;
+  opacity: 1;
+}
+.desktop-imprint-link {
+  font-size: 18px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  color: var(--text-color);
+}
+.sidebar-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 2em;
+  cursor: pointer;
+  z-index: 101;
+}
+.desktop-sidebar.expanded .sidebar-close-btn {
+  display: block;
+}
 
-  // Funktion zur Aktualisierung des Image Scroller Indicators
-  function updateImageIndicator() {
-    const n = 5; // Anzahl der Bilder
-    const segmentWidth = imageBaseDimension / n;
-    const viewportCenter = window.innerWidth / 2;
-    const containerCenter = imagePos + viewportCenter;
-    let activeIndex = Math.floor(containerCenter / segmentWidth) % n;
-    if (activeIndex < 0) activeIndex = 0;
-    const dots = document.querySelectorAll('.image-indicator .dot');
-    dots.forEach((dot, index) => {
-      if (index === activeIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
+/* --------------------
+   Projects Grid
+-------------------- */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+.projects-row {
+  position: relative;
+  overflow: hidden;
+  height: 60vh;
+  width: 100%;
+}
+.projects-wrapper1,
+.projects-wrapper2 {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  gap: 2vw;
+}
+.projects-content {
+  display: flex;
+  gap: 2vw;
+}
+.projects-content img {
+  width: 500px;
+  height: 60vh;
+  object-fit: cover;
+}
+
+/* --------------------
+   IMAGE SCROLLER – ENDLOS
+-------------------- */
+.image-scroller {
+  width: 100vw;
+  height: calc(var(--vh) * 100);
+  background: #222;
+  overflow: hidden;
+  position: relative;
+}
+@supports (height: 100svh) {
+  .image-scroller {
+    height: 100svh;
   }
-
-  const imageScroller = document.querySelector('.image-scroller');
-  if (imageScroller) {
-    imageScroller.addEventListener("wheel", function (e) {
-      e.preventDefault();
-      const factor = 1;
-      imagePos = (imagePos + e.deltaY * factor) % imageBaseDimension;
-      if (imagePos < 0) imagePos += imageBaseDimension;
-      const wrapper = document.querySelector('.image-scroller-wrapper');
-      if (wrapper) {
-        wrapper.style.transform = `translateX(-${imagePos}px)`;
-      }
-      updateImageIndicator();
-    }, { passive: false });
+}
+.image-scroller-wrapper {
+  display: flex;
+  transition: none;
+}
+.image-set {
+  display: flex;
+}
+.image-wrapper {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+  height: calc(var(--vh) * 100);
+}
+@supports (height: 100svh) {
+  .image-wrapper {
+    height: 100svh;
   }
+}
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  /* ---------------------------------------------------
-     MOBILE MENÜ-FUNKTIONALITÄT (falls vorhanden)
-  --------------------------------------------------- */
-  const menu = document.getElementById("menu");
-  const menuToggle = document.getElementById("menu-toggle");
-  const menuClose = document.getElementById("menu-close");
+/* Neuer Image Scroller Indicator (unten rechts) */
+.image-indicator-wrapper {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 50;
+}
+.image-indicator {
+  display: flex;
+  gap: 20px;
+}
+.image-indicator .dot {
+  width: 7px;
+  height: 7px;
+  background-color: grey;
+  border-radius: 50%;
+}
+.image-indicator .dot.active {
+  background-color: white;
+}
 
-  if (menuToggle && menuClose && menu) {
-    menuToggle.addEventListener("click", function (event) {
-      event.preventDefault();
-      menu.classList.add("active");
-    });
-    menuClose.addEventListener("click", function (event) {
-      event.preventDefault();
-      menu.classList.remove("active");
-    });
-  } else {
-    console.error("❌ Mobile Menü-Elemente nicht gefunden!");
+/* --------------------
+   Buttons, etc.
+-------------------- */
+button[type="submit"] {
+  background-color: var(--text-color);
+  color: #000;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+@media (max-width: 699px) {
+  button[type="submit"] {
+    font-size: 10px;
   }
+}
+button[type="submit"]:hover {
+  background-color: darkgrey;
+}
 
-  /* ---------------------------------------------------
-     Globale Variablen für das Projects Grid
-  --------------------------------------------------- */
-  let pos1 = 0;
-  let baseDimension1 = 0;
+/* --------------------
+   Stil für das About-Bild
+-------------------- */
+.about-image-container {
+  width: 100%;
+  aspect-ratio: 20 / 9;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.about-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
 
-  function updateProjectBaseDimensions() {
-    const row1Wrapper = document.querySelector(".row1 .projects-wrapper1");
-    if (!row1Wrapper) return;
-    if (window.innerWidth < 699) {
-      baseDimension1 = row1Wrapper.querySelector(".projects-content").offsetHeight;
-    } else {
-      baseDimension1 = row1Wrapper.querySelector(".projects-content").offsetWidth;
-    }
-    pos1 = 0;
-  }
+/* --------------------
+   SCROLLBAR AUSBLENDEN
+-------------------- */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 
-  function updateIndicator() {
-    const n = 5; // Anzahl der Bilder
-    let activeIndex = 0;
-    if (window.innerWidth < 699) {
-      const viewportCenter = window.innerHeight / 2;
-      const containerCenter = pos1 + viewportCenter;
-      const segmentHeight = baseDimension1 / n;
-      activeIndex = Math.floor(containerCenter / segmentHeight) % n;
-    } else {
-      const viewportCenter = window.innerWidth / 2;
-      const containerCenter = pos1 + viewportCenter;
-      const segmentWidth = baseDimension1 / n;
-      activeIndex = Math.floor(containerCenter / segmentWidth) % n;
-    }
-    if (activeIndex < 0) activeIndex = 0;
-    const dots = document.querySelectorAll('.projects-indicator .dot');
-    dots.forEach((dot, index) => {
-      if (index === activeIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
-  }
+/* --------------------
+   Projekte Indicator (in der Sidebar)
+-------------------- */
+.projects-indicator-wrapper {
+  display: none;
+  position: absolute;
+  bottom: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 105;
+}
+.desktop-sidebar.projects-active .projects-indicator-wrapper {
+  display: block;
+}
+.projects-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.projects-indicator .dot {
+  width: 7px;
+  height: 7px;
+  background-color: grey;
+  border-radius: 50%;
+}
+.projects-indicator .dot.active {
+  background-color: white;
+}
 
-  /* ---------------------------------------------------
-     DESKTOP SIDEBAR – Öffnen der Bereiche
-  --------------------------------------------------- */
-  const desktopSidebar = document.getElementById("desktop-sidebar");
-  if (!desktopSidebar) {
-    console.error("❌ Desktop Sidebar nicht gefunden!");
-  }
+#project-tooltip {
+  position: fixed;
+  display: none;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 3px;
+  z-index: 800000;
+}
 
-  const desktopImprintLink = document.getElementById("desktop-imprint-link");
-  if (desktopImprintLink && desktopSidebar) {
-    desktopImprintLink.addEventListener("click", function (event) {
-      event.preventDefault();
-      desktopSidebar.classList.remove("imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-      desktopSidebar.classList.add("expanded", "imprint-active");
-    });
-  } else {
-    console.error("❌ Desktop Imprint-Link oder Sidebar nicht gefunden!");
-  }
+/* --------------------
+   CUSTOM CURSOR (ohne Gradient-Kreis)
+-------------------- */
 
-  const desktopAboutLink = document.getElementById("desktop-about-link");
-  if (desktopAboutLink && desktopSidebar) {
-    desktopAboutLink.addEventListener("click", function (event) {
-      event.preventDefault();
-      desktopSidebar.classList.remove("imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-      desktopSidebar.classList.add("expanded", "about-active");
-    });
-  } else {
-    console.error("❌ Desktop About-Link nicht gefunden!");
-  }
+/* Container für den Custom Cursor */
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  transition: transform 0.1s ease;
+}
 
-  const desktopContactLink = document.getElementById("desktop-contact-link");
-  if (desktopContactLink && desktopSidebar) {
-    desktopContactLink.addEventListener("click", function (event) {
-      event.preventDefault();
-      desktopSidebar.classList.remove("imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-      desktopSidebar.classList.add("expanded", "contact-active");
-    });
-  } else {
-    console.error("❌ Desktop Contact-Link nicht gefunden!");
-  }
+/* Das "Scroll-Icon" als Maus – Normalzustand: langes, mausförmiges Slot mit innerem schwarzen Balken */
+.cursor-scroll-icon {
+  position: relative;
+  width: 30px;
+  height: 50px;
+  border: 2px solid white;
+  border-radius: 25px;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+.cursor-scroll-icon::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 10px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
 
-  const desktopProjectsLink = document.getElementById("desktop-projects-link");
-  if (desktopProjectsLink && desktopSidebar) {
-    desktopProjectsLink.addEventListener("click", function (event) {
-      event.preventDefault();
-      desktopSidebar.classList.remove("imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-      desktopSidebar.classList.add("expanded", "projects-active");
-      setTimeout(() => {
-        updateProjectBaseDimensions();
-        updateIndicator();
-      }, 300);
-    });
-  } else {
-    console.error("❌ Desktop Projects-Link nicht gefunden!");
-  }
-
-  const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
-  if (sidebarCloseBtn && desktopSidebar) {
-    sidebarCloseBtn.addEventListener("click", function () {
-      desktopSidebar.classList.remove("expanded", "imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-    });
-  } else {
-    console.error("❌ Desktop Sidebar-Schließ-Button nicht gefunden!");
-  }
-
-  /* ---------------------------------------------------
-     MOBILE: Erweiterung des Headers (falls vorhanden)
-  --------------------------------------------------- */
-  const mobileHeader = document.getElementById("mobile-header");
-  if (mobileHeader) {
-    const mobileImprintLink = document.getElementById("mobile-imprint-link");
-    const mobileImprintCloseBtn = document.getElementById("mobile-imprint-close-btn");
-    if (mobileImprintLink) {
-      mobileImprintLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        mobileHeader.classList.remove("imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-        mobileHeader.classList.add("expanded", "imprint-active");
-      });
-    } else {
-      console.error("❌ Mobile Imprint-Link nicht gefunden!");
-    }
-    if (mobileImprintCloseBtn) {
-      mobileImprintCloseBtn.addEventListener("click", function () {
-        mobileHeader.classList.remove("expanded", "imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-      });
-    } else {
-      console.error("❌ Mobile Imprint-Schließ-Button nicht gefunden!");
-    }
-
-    const mobileAboutLink = document.getElementById("mobile-about-link");
-    const mobileAboutCloseBtn = document.getElementById("mobile-about-close-btn");
-    if (mobileAboutLink) {
-      mobileAboutLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        mobileHeader.classList.remove("imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-        mobileHeader.classList.add("expanded", "about-active");
-      });
-    } else {
-      console.error("❌ Mobile About-Link nicht gefunden!");
-    }
-    if (mobileAboutCloseBtn) {
-      mobileAboutCloseBtn.addEventListener("click", function () {
-        mobileHeader.classList.remove("expanded", "imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-      });
-    } else {
-      console.error("❌ Mobile About-Schließ-Button nicht gefunden!");
-    }
-
-    const mobileContactLink = document.getElementById("mobile-contact-link");
-    const mobileContactCloseBtn = document.getElementById("mobile-contact-close-btn");
-    if (mobileContactLink) {
-      mobileContactLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        mobileHeader.classList.remove("imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-        mobileHeader.classList.add("expanded", "contact-active");
-      });
-    } else {
-      console.error("❌ Mobile Contact-Link nicht gefunden!");
-    }
-    if (mobileContactCloseBtn) {
-      mobileContactCloseBtn.addEventListener("click", function () {
-        mobileHeader.classList.remove("expanded", "imprint-active", "about-active", "contact-active", "projects-active", "hello-active");
-      });
-    } else {
-      console.error("❌ Mobile Contact-Schließ-Button nicht gefunden!");
-    }
-  }
-
-  /* ---------------------------------------------------
-     SCROLLING FÜR DAS PROJECTS GRID
-     Zusätzlich: Nach jedem Scroll-Schritt wird geprüft, ob sich unter dem statischen Cursor das Bild ändert,
-     und das Overlay (Hover-Effekt) wird entsprechend aktualisiert.
-  --------------------------------------------------- */
-  window.addEventListener(
-    "wheel",
-    (e) => {
-      if (!desktopSidebar.classList.contains("projects-active")) return;
-      e.preventDefault();
-      const factor = 1;
-      if (window.innerWidth < 699) {
-        pos1 = (pos1 + e.deltaY * factor) % baseDimension1;
-        if (pos1 < 0) pos1 += baseDimension1;
-        const row1Wrapper = document.querySelector(".row1 .projects-wrapper1");
-        if (row1Wrapper) {
-          row1Wrapper.style.transform = `translateY(-${pos1}px)`;
-        }
-      } else {
-        pos1 = (pos1 + e.deltaY * factor) % baseDimension1;
-        if (pos1 < 0) pos1 += baseDimension1;
-        const row1Wrapper = document.querySelector(".row1 .projects-wrapper1");
-        if (row1Wrapper) {
-          row1Wrapper.style.transform = `translateX(-${pos1}px)`;
-        }
-      }
-      updateIndicator();
-      // Zusätzlich: Prüfe, ob sich unter dem statischen Cursor ein anderes Bild im Projects Grid befindet.
-      checkOverlayHover();
-    },
-    { passive: false }
-  );
-
-  /* ---------------------------------------------------
-     SETZE DIE VARIABLE FÜR DIE VH-EINHEIT
-  --------------------------------------------------- */
-  function setVh() {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }
-  setVh();
-  window.addEventListener("resize", setVh);
-
-  /* ---------------------------------------------------
-     HOVER-FUNKTIONALITÄT FÜR PROJECTS GRID BILDER
-     Zusätzlich: Beim Hover über die Bilder wird auch der Tooltip "view project" neben dem Cursor angezeigt.
-  --------------------------------------------------- */
-  const projectTooltip = document.getElementById("project-tooltip");
-  document.querySelectorAll(".projects-area .projects-content img").forEach((img) => {
-    img.addEventListener("mouseenter", () => {
-      clearTimeout(img.hideOverlayTimer);
-      const altText = img.getAttribute("alt");
-      if (overlayMapping[altText]) {
-        overlay.style.backgroundImage = `url('${overlayMapping[altText]}')`;
-      }
-      overlay.style.visibility = "visible";
-      overlay.style.opacity = "1";
-      // Tooltip anzeigen
-      if (projectTooltip) {
-        projectTooltip.style.display = "block";
-      }
-    });
-    img.addEventListener("mousemove", (e) => {
-      // Positioniere den Tooltip neben dem Cursor (Offset z. B. 10px)
-      if (projectTooltip) {
-        projectTooltip.style.left = (e.clientX + 10) + "px";
-        projectTooltip.style.top = (e.clientY + 10) + "px";
-      }
-    });
-    img.addEventListener("mouseleave", () => {
-      img.hideOverlayTimer = setTimeout(() => {
-        overlay.style.opacity = "0";
-        overlay.style.visibility = "hidden";
-      }, 100);
-      // Tooltip ausblenden
-      if (projectTooltip) {
-        projectTooltip.style.display = "none";
-      }
-    });
-  });
-
-  /* ---------------------------------------------------
-     CUSTOM CURSOR
-     Der Custom Cursor besteht nun ausschließlich aus dem Scroll-Icon.
-     Die Transformation kombiniert die Mausposition mit translate(-50%, -50%),
-     sodass die Mitte des Icons exakt an der Mauszeigerposition liegt.
-  --------------------------------------------------- */
-  const customCursor = document.getElementById("custom-cursor");
-  document.addEventListener("mousemove", (e) => {
-    customCursor.style.transform =
-      `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-  });
-  const hoverElements = document.querySelectorAll("a, button");
-  hoverElements.forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      customCursor.classList.add("cursor--hover");
-    });
-    el.addEventListener("mouseleave", () => {
-      customCursor.classList.remove("cursor--hover");
-    });
-  });
-});
+/* Hover-Zustand (bei Links/Buttons): Das lange Slot wird zu einem kreisrunden Element, der Balken (Scrollrad) verschwindet */
+#custom-cursor.cursor--hover .cursor-scroll-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+#custom-cursor.cursor--hover .cursor-scroll-icon::before {
+  opacity: 0;
+}
