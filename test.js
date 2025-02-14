@@ -359,11 +359,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ---------------------------------------------------
      CUSTOM CURSOR
-     Der Custom Cursor besteht nun ausschließlich aus dem Scroll-Icon (langes, mausförmiges Slot-Element, das bei Hover in ein rundes Element wechselt).
+     Der Custom Cursor besteht nun ausschließlich aus dem Scroll-Icon.
+     Die Transformation kombiniert die Mausposition mit translate(-50%, -50%),
+     sodass die Mitte des Icons exakt an der Mauszeigerposition liegt.
   --------------------------------------------------- */
   const customCursor = document.getElementById("custom-cursor");
   document.addEventListener("mousemove", (e) => {
-    customCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    customCursor.style.transform =
+      `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
   });
   const hoverElements = document.querySelectorAll("a, button");
   hoverElements.forEach((el) => {
